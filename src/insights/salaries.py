@@ -54,7 +54,16 @@ class ProcessSalaries(ProcessJobs):
 
         return min_salary <= salary <= max_salary
 
-    def filter_by_salary_range(
-        self, jobs: List[dict], salary: Union[str, int]
-    ) -> List[Dict]:
-        pass
+    def filter_by_salary_range(  # type: ignore
+        self, jobs: List[dict], salary: Union[str, int]  # type: ignore
+    ) -> List[Dict]:  # type: ignore
+        filtered_jobs = []
+        for row in jobs:  # type: ignore
+            # could be done without try/except block like in the previous
+            # but i wanted to try this way
+            try:
+                if self.matches_salary_range(row, salary):  # type: ignore
+                    filtered_jobs.append(row)  # type: ignore
+            except ValueError:
+                pass
+        return filtered_jobs  # type: ignore
