@@ -22,14 +22,21 @@ class ProcessJobs:
         #         unique_job_types.append(row["job_type"])
         # return unique_job_types
 
-    def filter_by_multiple_criteria(self, list: List[Dict], filter_criteria: dict) -> List[dict]:  # type: ignore
+    def filter_by_multiple_criteria(  # type: ignore
+            self, list: List[Dict],  # type: ignore
+            filter_criteria: dict) -> List[dict]:  # type: ignore
         return [
-            row for row in list if row["industry"] == filter_criteria["industry"] and row["job_type"] == filter_criteria["job_type"]   # type: ignore
+            row
+            for row in list  # type: ignore
+            if (row["industry"] == filter_criteria["industry"] and
+                row["job_type"] == filter_criteria["job_type"])
         ]
+
         # just to show to myself that i know other ways to do it:
         # filtered_list = []
         # for row in list:  # type: ignore
-        #     if row["industry"] == filter_criteria["industry"] and row["job_type"] == filter_criteria["job_type"]:
+        #     if (row["industry"] == filter_criteria["industry"]) and
+        #        (row["job_type"] == filter_criteria["job_type"]):
         #         filtered_list.append(row)  # type: ignore
         # return filtered_list  # type: ignore
 
